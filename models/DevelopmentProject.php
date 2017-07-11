@@ -6,7 +6,7 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use andahrm\setting\models\Helper;
-use kuakling\datepicker\behaviors\DateBuddhistBehavior;
+use andahrm\datepicker\behaviors\DateBuddhistBehavior;
 use yii\helpers\Html;
 
 /**

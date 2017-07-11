@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 use andahrm\person\models\Person;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
-use kuakling\datepicker\behaviors\DateBuddhistBehavior;
+use andahrm\datepicker\behaviors\DateBuddhistBehavior;
 use andahrm\setting\models\Helper;
 
 /**

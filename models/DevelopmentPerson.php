@@ -5,7 +5,7 @@ namespace andahrm\development\models;
 use Yii;
 use andahrm\person\models\Person;
 use yii\helpers\ArrayHelper;
-use kuakling\datepicker\behaviors\DateBuddhistBehavior;
+use andahrm\datepicker\behaviors\DateBuddhistBehavior;
 
 /**
  * This is the model class for table "development_person".

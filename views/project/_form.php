@@ -7,7 +7,7 @@ use yii\bootstrap\ActiveForm;
 use kartik\widgets\Select2;
 use kartik\helpers\Html;
 use yii\helpers\Url;
-use kuakling\datepicker\DatePicker;
+use andahrm\datepicker\DatePicker;
 use kartik\widgets\Typeahead;
 use andahrm\development\models\DevelopmentProject;
 use kartik\grid\GridView;
