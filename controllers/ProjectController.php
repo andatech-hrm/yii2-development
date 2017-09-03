@@ -13,6 +13,9 @@ use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 use yii\helpers\ArrayHelper;
 
+use yii\helpers\Json;
+use yii\web\Response;
+
 /**
  * ProjectController implements the CRUD actions for DevelopmentProject model.
  */
@@ -87,6 +90,8 @@ class ProjectController extends Controller {
 
                 $session->destroy('dev_project');
                 return $this->redirect(['update', 'id' => $model->id]);
+            }else{
+                print_r($model->getError());
             }
         } else {
             return $this->render('create', [
@@ -94,6 +99,42 @@ class ProjectController extends Controller {
                         'person' => $this->bindPerson($model, $mode, $user_id),
             ]);
         }
+    }
+    
+    public function actionCreateAjax($formAction = null) {
+        $model = new DevelopmentProject();
+        
+       if(Yii::$app->request->isPost){
+             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            
+           
+            $success = false;
+            $result=null;
+            
+            $request = Yii::$app->request;
+            $post = Yii::$app->request->post();
+            // print_r($post);
+            // exit();
+            if($request->post('save') && $model->load($post)){
+                if($model->save()) {
+                    $success = true;
+                    $result = $model->attributes;
+                }else{
+                    $result = $model->getErrors();
+                }
+                return ['success' => $success, 'result' => $result];
+            }
+            $result = $model->getErrors();
+            return ['success' => $success, 'result' => $result];
+            
+        }
+        
+        return $this->renderPartial('_form-ajax', [
+                    'model' => $model,
+                    'formAction' => $formAction
+                    //'person' => $this->bindPerson($model, $mode, $user_id),
+        ]);
+        
     }
 
     public function actionTestSession($mode = null, $val = null) {
@@ -241,10 +282,13 @@ class ProjectController extends Controller {
     public function addPerson($model, $post) {
         if ($model->id)
             DevelopmentPerson::deleteAll(['dev_project_id' => $model->id]);
+    
+        $request = Yii::$app->request;
+        $post = $request->post();
 //        echo "<pre>";
 //        print_r($post['DevelopmentPerson']);
         //exit();
-        if ($post['DevelopmentPerson']) {
+        if ($request->post('DevelopmentPerson')) {
             foreach ($post['DevelopmentPerson'] as $devPerson) {
                 #Check null of dev_activity_char_id
                 if ($devPerson['dev_activity_char_id']) {
@@ -331,5 +375,23 @@ class ProjectController extends Controller {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    ########################### ########################### ########################### ########################### ###########################
+    ########################### ########################### ########################### ########################### ###########################
+    
+    
+    public function actionGetList($q = null, $id = null){
+        Yii::$app->response->format = Response::FORMAT_JSON; //กำหนดการแสดงผลข้อมูลแบบ json
+        $out = ['results'=>['id'=>'','text'=>'']];
+        if(!is_null($q)){
+            $model = DevelopmentProject::find();
+            $model->andFilterWhere(['like', 'title', $q]);
+            $out['results'] = ArrayHelper::getColumn($model->all(),function($model){
+                return ['id'=>$model->id,'text'=>$model->title];
+            });
+        }
+        return $out;
+    }
+    
 
 }

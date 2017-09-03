@@ -91,6 +91,12 @@ class DevelopmentPerson extends \yii\db\ActiveRecord {
     public function getDevChar() {
         return $this->hasOne(DevelopmentActivityChar::className(), ['id' => 'dev_activity_char_id']);
     }
+    
+    public function getDevCharList() {
+        $model = self::find()->where(['dev_project_id'=>$this->dev_project_id])->all();
+        $model = ArrayHelper::getColumn($model,'devChar.title');
+        return $model?implode(', ',$model):null;
+    }
 
     #############################
 
