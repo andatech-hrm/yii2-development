@@ -76,6 +76,12 @@ class DevelopmentPerson extends \yii\db\ActiveRecord {
             'assessment' => Yii::t('andahrm/development', 'Assessment'),
         ];
     }
+    
+    public function attributeHints() {
+        return [
+            'dev_project_id' => Yii::t('andahrm/development', 'Development Project'),
+        ];
+    }
 
     /**
      * @return \yii\db\ActiveQuery
