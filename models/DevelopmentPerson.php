@@ -6,6 +6,7 @@ use Yii;
 use andahrm\person\models\Person;
 use yii\helpers\ArrayHelper;
 use andahrm\datepicker\behaviors\DateBuddhistBehavior;
+use andahrm\datepicker\behaviors\YearBuddhistBehavior;
 
 /**
  * This is the model class for table "development_person".
@@ -32,12 +33,12 @@ class DevelopmentPerson extends \yii\db\ActiveRecord {
     {
         return [
             'start' => [
-                'class' => DateBuddhistBehavior::className(),
-                'dateAttribute' => 'start',
+                'class' => YearBuddhistBehavior::className(),
+                'attribute' => 'year_start',
             ],
             'end' => [
-                'class' => DateBuddhistBehavior::className(),
-                'dateAttribute' => 'end',
+                'class' => YearBuddhistBehavior::className(),
+                'attribute' => 'year_end',
             ],
         ];
     }
