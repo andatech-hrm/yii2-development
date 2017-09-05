@@ -49,8 +49,8 @@ class DevelopmentPerson extends \yii\db\ActiveRecord {
         return [
                 [['user_id', 'dev_project_id'], 'required'],
                 [['user_id', 'dev_project_id', 'dev_activity_char_id', 'explodeBy'], 'integer'],
-                [['detail'], 'string'],
-                [['start', 'end'], 'string', 'max' => 45],
+                [['detail','qualification'], 'string'],
+                [['start', 'end'], 'safe'],
                 [['dev_project_id'], 'exist', 'skipOnError' => true, 'targetClass' => DevelopmentProject::className(), 'targetAttribute' => ['dev_project_id' => 'id']],
                 //['dev_activity_char_id', 'default', 'value' => 10],            
         ];
@@ -65,6 +65,7 @@ class DevelopmentPerson extends \yii\db\ActiveRecord {
             'dev_project_id' => Yii::t('andahrm/development', 'Development Project'),
             'dev_activity_char_id' => Yii::t('andahrm/development', 'Nature Activity'),
             'detail' => Yii::t('andahrm/development', 'Detail'),
+            'qualification' => Yii::t('andahrm/development', 'Qualification'),
             'start' => Yii::t('andahrm/development', 'Start'),
             'end' => Yii::t('andahrm/development', 'End'),            
             'rangeDate' => Yii::t('andahrm/development', 'Range Date'),

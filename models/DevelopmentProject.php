@@ -58,7 +58,8 @@ class DevelopmentProject extends ActiveRecord {
      */
     public function rules() {
         return [
-                [['title', 'start', 'end', 'place', 'responsible_agency'], 'required'],
+                [['title', 'start', 'end'], 'required'],
+                //[['title', 'start', 'end', 'place', 'responsible_agency'], 'required'],
                 [['start', 'end'], 'safe'],
                 [['isin_agency', 'status', 'budget_status', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
                 [['budget'], 'number'],
