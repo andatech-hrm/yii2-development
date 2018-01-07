@@ -34,11 +34,11 @@ class DevelopmentPerson extends \yii\db\ActiveRecord {
         return [
             'start' => [
                 'class' => YearBuddhistBehavior::className(),
-                'attribute' => 'year_start',
+                'attribute' => 'start',
             ],
             'end' => [
                 'class' => YearBuddhistBehavior::className(),
-                'attribute' => 'year_end',
+                'attribute' => 'end',
             ],
         ];
     }

@@ -381,11 +381,14 @@ class ProjectController extends Controller {
     
     
     public function actionGetList($q = null, $id = null){
+       
         Yii::$app->response->format = Response::FORMAT_JSON; //กำหนดการแสดงผลข้อมูลแบบ json
         $out = ['results'=>['id'=>'','text'=>'']];
         if(!is_null($q)){
-            $model = DevelopmentProject::find();
-            $model->andFilterWhere(['like', 'title', $q]);
+            
+            $model = DevelopmentProject::find()->where(['LIKE', 'title', $q]);
+            //echo $model->createCommand()->sql;
+            //print_r($model->all());
             $out['results'] = ArrayHelper::getColumn($model->all(),function($model){
                 return ['id'=>$model->id,'text'=>$model->title];
             });
