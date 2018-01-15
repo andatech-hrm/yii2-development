@@ -25,11 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             
 
-
-  
-
-
-
 <?php
 $columns = [
    'user_id'=> [
@@ -66,11 +61,11 @@ $columns = [
      'rangeDate'=>[
                     'attribute' => 'rangeDate',
                     //'filter' => DevelopmentActivityChar::getList(),
-                    'filterType' => GridView::FILTER_DATE_RANGE,
-                    'filterWidgetOptions' => [
-                        'language' => Yii::$app->language,
-                        'pluginOptions' => ['allowClear' => true],
-                    ],
+                    // 'filterType' => GridView::FILTER_DATE_RANGE,
+                    // 'filterWidgetOptions' => [
+                    //     'language' => Yii::$app->language,
+                    //     'pluginOptions' => ['allowClear' => true],
+                    // ],
                     'format' => 'html',
                     'value' => 'rangeDate',
                     'contentOptions' => ['nowrap' => 'nowrap']
@@ -83,7 +78,7 @@ $gridColumns = [
     $columns['dev_project_id'],
     $columns['dev_activity_char_id'],
     $columns['rangeDate'],
-    $columns['rangeDate'],
+    //$columns['rangeDate'],
     [
                     'class' => 'kartik\grid\ActionColumn',
                     'urlCreator' => function ($action, $model) {
@@ -114,6 +109,7 @@ $fullExportMenu = ExportMenu::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'id' => 'data-grid',
+        'responsive'=>false,
         'pjax'=>true,
 //        'resizableColumns'=>true,
 //        'resizeStorageKey'=>Yii::$app->user->id . '-' . date("m"),

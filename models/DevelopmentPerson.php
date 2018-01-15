@@ -228,7 +228,8 @@ class DevelopmentPerson extends \yii\db\ActiveRecord {
     }
 
     public function getRangeDate() {
-        return $this->devProject ? $this->devProject->rangeDate . ($this->startFormat ? "<div style='color:#ffa600;'>ไปจริง<br/>" . $this->startFormat . ' ถึง ' . $this->endFormat . '</div>' : '') : null;
+        //return $this->devProject ? $this->devProject->rangeDate . ($this->startFormat ? "<div style='color:#ffa600;'>ไปจริง<br/>" . $this->startFormat . ' ถึง ' . $this->endFormat . '</div>' : '') : null;
+        return $this->devProject ? $this->devProject->rangeDate: null;
     }
 
     public function getStartFormat() {
