@@ -96,10 +96,10 @@ $fullExportMenu = ExportMenu::widget([
                     'title' => 'Reload',
                     'id' => 'btn-reload-grid'
                 ]) . ' '.
-                Html::a('<i class="glyphicon glyphicon-trash"></i> '.Yii::t('andahrm', 'Trash'), ['trash/index'], [
-                    'class' => 'btn btn-warning btn-flat',
-                    'data-pjax' => 0
-                ]) . ' '.
+                // Html::a('<i class="glyphicon glyphicon-trash"></i> '.Yii::t('andahrm', 'Trash'), ['trash/index'], [
+                //     'class' => 'btn btn-warning btn-flat',
+                //     'data-pjax' => 0
+                // ]) . ' '.
                 '</div>',
                 'heading'=>false,
                 //'footer'=>false,
